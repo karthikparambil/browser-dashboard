@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-image: url('https://images.unsplash.com/photo-1548266652-99cf27701ced?q=80&w=2000&auto=format&fit=crop');
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-color: #ffffff98;
+            --accent-glow: rgba(255, 255, 255, 0.4);
+            --text-color: #ffffff;
+            --icon-box-bg: rgba(255, 255, 255, 0.95);
+            --font-stack: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-stack);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: var(--bg-image) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            background-image:
+                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .navbar {
+            margin-top: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 8px 10px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            gap: 5px;
+            box-shadow: 0 8px 32px rgba(182, 182, 182, 0.3);
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .nav-item:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-glow);
+            font-weight: 800;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-icon-btn {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .nav-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transform: rotate(15deg);
+        }
+
+        .container {
+            margin-top: 60px;
+            width: 85%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 40px 20px;
+            justify-items: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .app-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            width: 80px;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            background-color: var(--icon-box-bg);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .icon-box img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 6px;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.8) 50%,
+                    transparent 100%);
+            transform: skewX(-20deg);
+            transition: none;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .app-name {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .app-card:hover {
+            transform: translateY(-12px) scale(1.1);
+            z-index: 10;
+        }
+
+        .app-card:hover .icon-box {
+            background-color: #fff;
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 2px var(--accent-color),
+                0 0 20px var(--accent-glow);
+        }
+
+        .app-card:hover .icon-box img {
+            transform: scale(1.1);
+        }
+
+        .app-card:hover .icon-box::after {
+            left: 150%;
+            transition: left 0.6s ease-in-out;
+        }
+
+        .app-card:hover .app-name {
+            color: #ffffff;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+            transform: translateY(5px);
+        }
+
+        .quote {
+            margin-top: auto;
+            margin-bottom: 80px;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-stack);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="overlay"></div>
+
+    <nav class="navbar">
+        <div class="nav-item active" onclick="filterApps('pinned', this)">Pinned</div>
+        <div class="nav-item" onclick="filterApps('all', this)">All</div>
+        <div class="nav-item" onclick="filterApps('google', this)">Google</div>
+        <div class="nav-item" onclick="filterApps('ai', this)">AI</div>
+        <div class="nav-item" onclick="filterApps('network', this)">Network</div>
+        <div class="nav-item" onclick="filterApps('labs', this)">Labs</div>
+        <div class="nav-item" onclick="filterApps('tools', this)">Tools</div>
+
+    </nav>
+
+    <div class="container">
+        <div class="app-grid" id="grid">
+            <!-- ROW 1 -->
+            <a href="https://youtube.com" class="app-card" data-cat="google" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="YT">
+                </div>
+                <span class="app-name">Youtube</span>
+            </a>
+            <a href="https://google.com" class="app-card" data-cat="google" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=google.com&sz=128" alt="Google">
+                </div>
+                <span class="app-name">Google</span>
+            </a>
+            <a href="https://github.com/karthikparambil" class="app-card" data-cat="network" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=github.com&sz=128" alt="Github">
+                </div>
+                <span class="app-name">Github</span>
+            </a>
+            <a href="https://tryhackme.com" class="app-card" data-cat="labs" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=tryhackme.com&sz=128" alt="TryHackMe">
+                </div>
+                <span class="app-name">TryHackMe</span>
+            </a>
+            <a href="https://web.whatsapp.com/" class="app-card" data-cat="network" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=128" alt="WhatsApp">
+                </div>
+                <span class="app-name">WhatsApp</span>
+            </a>
+            <a href="https://chat.deepseek.com" class="app-card" data-cat="ai">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=128" alt="Deepseek">
+                </div>
+                <span class="app-name">Deepseek</span>
+            </a>
+            <a href="https://chatgpt.com" class="app-card" data-cat="ai" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=128" alt="ChatGPT">
+                </div>
+                <span class="app-name">ChatGPT</span>
+            </a>
+            <a href="https://perplexity.ai" class="app-card" data-cat="ai">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128" alt="Perplexity">
+                </div>
+                <span class="app-name">Perplexity</span>
+            </a>
+            <a href="https://hackerai.co/" class="app-card" data-cat="ai">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=hackerai.co&sz=128" alt="HackerAI">
+                </div>
+                <span class="app-name">HackerAI</span>
+            </a>
+            <a href="https://www.linkedin.com/in/karthikparambil9/" class="app-card" data-cat="network">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn">
+                </div>
+                <span class="app-name">LinkedIn</span>
+            </a>
+
+
+            <!-- ROW 2 -->
+
+
+            <a href="https://portswigger.net/web-security/" class="app-card" data-cat="labs">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=portswigger.net&sz=128" alt="Portswigger">
+                </div>
+                <span class="app-name">Portswigger</span>
+            </a>
+            <a href="https://hackthebox.com" class="app-card" data-cat="labs">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=hackthebox.com&sz=128" alt="HTB">
+                </div>
+                <span class="app-name">HackTheBox</span>
+            </a>
+            <a href="https://hashes.com/en/tools/hash_identifier" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=hashes.com&sz=128" alt="Hashid">
+                </div>
+                <span class="app-name">Hashes.com</span>
+            </a>
+            <a href="https://www.dcode.fr/hash-identifier" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=dcode.fr&sz=128" alt="Hashid">
+                </div>
+                <span class="app-name">dcode</span>
+            </a>
+            <a href="https://md5hashing.net/" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=md5hashing.net&sz=128" alt="MD5">
+                </div>
+                <span class="app-name">MD5Hash</span>
+            </a>
+            <!-- ROW 3 -->
+            <a href="https://gchq.github.io/CyberChef/" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=gchq.github.io/CyberChef&sz=128"
+                        alt="CyberChef">
+                </div>
+                <span class="app-name">CyberChef</span>
+            </a>
+            <a href="https://gemini.google.com" class="app-card" data-cat="ai">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128" alt="Gemini">
+                </div>
+                <span class="app-name">Gemini</span>
+            </a>
+            <a href="https://discord.app" class="app-card" data-cat="network">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=discord.com&sz=128" alt="Discord">
+                </div>
+                <span class="app-name">Discord</span>
+            </a>
+            <a href="https://Anonhere.vercel.app" class="app-card" data-cat="network">
+                <div class="icon-box">
+                    <img src="https://raw.githubusercontent.com/karthikparambil/AnonHere/refs/heads/main/assets/favicon.ico"
+                        alt="Anonhere">
+                </div>
+                <span class="app-name">Anonhere</span>
+            </a>
+            <a href="https://crackstation.net" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=crackstation.net&sz=128" alt="Crackstation">
+                </div>
+                <span class="app-name">CrackStn</span>
+            </a>
+            <a href="https://claude.ai" class="app-card" data-cat="ai" data-pinned="true">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=128" alt="Claude">
+                </div>
+                <span class="app-name">Claude</span>
+            </a>
+            <a href="https://www.revshells.com/" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=revshells.com&sz=128" alt="Revshells">
+                </div>
+                <span class="app-name">Revshells</span>
+            </a>
+            <a href="https://karthikparambil.github.io/hashmode/" class="app-card" data-cat="tools">
+                <div class="icon-box">
+                    <img src="https://www.google.com/s2/favicons?domain=hashcat.net&sz=128" alt="Hashmodes">
+                </div>
+                <span class="app-name">Hashmodes</span>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        let isAnimating = false;
+
+        function filterApps(category, element) {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            if (element) element.classList.add('active');
+
+            const grid = document.getElementById('grid');
+            grid.style.opacity = '0';
+
+            setTimeout(() => {
+                const apps = document.querySelectorAll('.app-card');
+                apps.forEach(app => {
+                    const appCat = app.getAttribute('data-cat');
+                    const isPinned = app.getAttribute('data-pinned') === 'true';
+
+                    if (category === 'all' ||
+                        (category === 'pinned' && isPinned) ||
+                        appCat === category) {
+                        app.classList.remove('hidden');
+                    } else {
+                        app.classList.add('hidden');
+                    }
+                });
+                grid.style.opacity = '1';
+                isAnimating = false;
+            }, 300);
+        }
+
+        // Initialize with Pinned view
+        document.addEventListener('DOMContentLoaded', () => {
+            filterApps('pinned', document.querySelector('.nav-item'));
+        });
+    </script>
+</body>
+
+</html>
