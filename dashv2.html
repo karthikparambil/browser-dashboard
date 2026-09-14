@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-glass: rgba(22, 25, 33, 0.45);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.65);
+            --hover-glass: rgba(255, 255, 255, 0.08);
+        }
+
+        html, body {
+            height: 100vh;
+            max-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background: #0a0c10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            height: 100vh;
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 40px 18px;
+            box-sizing: border-box;
+            zoom: 0.92;
+        }
+
+        /* Top Section */
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+        }
+
+        .greeting {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .greeting h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+        
+        .greeting p {
+            color: var(--text-dim);
+            font-size: 14.5px;
+        }
+
+        .clock-container {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(-10px);
+        }
+
+        .time {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+        }
+
+        .time span {
+            font-size: 20px;
+            font-weight: 600;
+            margin-left: 6px;
+            letter-spacing: 0;
+        }
+
+        .date {
+            color: var(--text-dim);
+            font-size: 14.5px;
+            font-weight: 500;
+        }
+
+        .quote-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .top-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .top-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-dim);
+        }
+
+        .top-icon:hover {
+            background: var(--hover-glass);
+            color: var(--text-main);
+        }
+        
+        .top-icon .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        .quote {
+            text-align: right;
+            color: var(--text-dim);
+            font-size: 14px;
+            line-height: 1.4;
+            max-width: 230px;
+        }
+
+        /* Search Section */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 24px;
+            padding: 0;
+            width: 100%;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+        }
+
+        .search-box {
+            width: 100%;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(30, 35, 45, 0.6);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .search-icon {
+            color: var(--text-dim);
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-shortcut {
+            color: var(--text-dim);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Suggestions Dropdown */
+        .suggestions-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: rgba(20, 24, 33, 0.85);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 18px;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            padding: 6px 0;
+        }
+
+        .suggestions-dropdown.active {
+            display: flex;
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: var(--text-main);
+            font-size: 14.5px;
+            cursor: pointer;
+            gap: 12px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .suggestion-item:hover, .suggestion-item.selected {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+
+        .suggestion-icon {
+            font-size: 18px;
+            color: var(--text-dim);
+        }
+
+        .suggestion-text {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Cards Grid (3x2 Matrix) */
+        .grid-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            padding: 14px 16px 12px;
+            display: flex;
+            flex-direction: column;
+            height: 192px;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .card-title .material-symbols-outlined {
+            font-size: 18px;
+            color: var(--text-dim);
+        }
+
+        .card-arrow {
+            color: var(--text-dim);
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+        
+        .card-arrow:hover {
+            color: var(--text-main);
+            transform: translateX(3px);
+        }
+
+        /* 4x2 Visible Apps Horizontal Grid */
+        .apps-row {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% - 24px) / 4);
+            gap: 6px 8px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            padding: 2px 2px 4px 2px;
+            width: 100%;
+            height: 100%;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE */
+            cursor: grab;
+            user-select: none;
+        }
+
+        .apps-row.grabbing {
+            cursor: grabbing;
+        }
+
+        .apps-row::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            text-decoration: none;
+            color: var(--text-main);
+            width: 100%;
+            cursor: pointer;
+            position: relative;
+            scroll-snap-align: start;
+            transition: transform 0.2s ease;
+        }
+
+        .app-item:hover {
+            transform: scale(1.06);
+            z-index: 2;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .app-item:hover .app-icon {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .app-item:hover .app-icon img {
+            transform: scale(1.1);
+        }
+
+        .app-name {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            font-weight: 500;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        .app-item:hover .app-name {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 12px 0 0;
+            color: var(--text-dim);
+            font-size: 13.5px;
+        }
+        
+        .footer-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        
+        .footer-line::before, .footer-line::after {
+            content: "";
+            height: 1px;
+            width: 40px;
+            background: var(--border-glass);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .top-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 12px;
+            }
+            .quote-container {
+                align-items: center;
+            }
+            .quote {
+                text-align: center;
+            }
+            .greeting {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video class="bg-video" autoplay loop muted playsinline poster="assets/bg.png">
+        <source src="assets/bg.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+    <div class="dashboard-container">
+        <div class="top-section">
+        <div class="greeting">
+            <h1>Good Morning, Karthik 👋</h1>
+            <p>Open. Do. Make it count.</p>
+        </div>
+        
+        <div class="clock-container">
+            <div class="time" id="time">09:24 <span>AM</span></div>
+            <div class="date" id="date">Saturday, 13 September 2026</div>
+        </div>
+
+        <div class="quote-container">
+            <div class="top-icons">
+                <div class="top-icon"><span class="material-symbols-outlined">light_mode</span></div>
+                <div class="top-icon"><span class="material-symbols-outlined">palette</span></div>
+                <div class="top-icon"><span class="material-symbols-outlined">settings</span></div>
+            </div>
+            <div class="quote">
+                "Small steps every day<br>lead to big results."
+            </div>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <div class="search-box">
+                <span class="material-symbols-outlined search-icon">search</span>
+                <input type="text" class="search-input" placeholder="Search Google or type a command..." autofocus autocomplete="off">
+                <span class="search-shortcut">Ctrl K</span>
+            </div>
+            <div class="suggestions-dropdown" id="suggestions"></div>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <!-- Google & Apps -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined">apps</span> Google & Apps</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right">arrow_forward</span>
+            </div>
+            <div class="apps-row">
+                <a href="https://google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=128" alt="Google"></div><div class="app-name">Google</div></a>
+                <a href="https://mail.google.com" class="app-item"><div class="app-icon"><img src="https://ssl.gstatic.com/ui/v1/icons/mail/logo_loading.png" alt="Gmail"></div><div class="app-name">Gmail</div></a>
+                <a href="https://youtube.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="YouTube"></div><div class="app-name">YouTube</div></a>
+                <a href="https://drive.google.com/drive/u/0/my-drive" class="app-item"><div class="app-icon"><img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png" alt="Drive"></div><div class="app-name">Drive</div></a>
+                <a href="https://docs.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=128" alt="Docs"></div><div class="app-name">Docs</div></a>
+                <a href="https://sheets.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=128" alt="Sheets"></div><div class="app-name">Sheets</div></a>
+                <a href="https://calendar.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=calendar.google.com&sz=128" alt="Calendar"></div><div class="app-name">Calendar</div></a>
+                <a href="https://meet.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=meet.google.com&sz=128" alt="Meet"></div><div class="app-name">Meet</div></a>
+                <a href="https://slides.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=slides.google.com&sz=128" alt="Slides"></div><div class="app-name">Slides</div></a>
+                <a href="https://chat.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=chat.google.com&sz=128" alt="Chat"></div><div class="app-name">Chat</div></a>
+                <a href="https://maps.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=maps.google.com&sz=128" alt="Maps"></div><div class="app-name">Maps</div></a>
+                <a href="https://photos.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=photos.google.com&sz=128" alt="Photos"></div><div class="app-name">Photos</div></a>
+                <a href="https://keep.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=keep.google.com&sz=128" alt="Keep"></div><div class="app-name">Keep</div></a>
+                <a href="https://docs.google.com/forms" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=forms.google.com&sz=128" alt="Forms"></div><div class="app-name">Forms</div></a>
+                <a href="https://tasks.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=tasks.google.com&sz=128" alt="Tasks"></div><div class="app-name">Tasks</div></a>
+                <a href="https://translate.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=translate.google.com&sz=128" alt="Translate"></div><div class="app-name">Translate</div></a>
+                <a href="https://news.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=news.google.com&sz=128" alt="News"></div><div class="app-name">News</div></a>
+            </div>
+        </div>
+
+        <!-- AI -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined">smart_toy</span> AI</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right">arrow_forward</span>
+            </div>
+            <div class="apps-row">
+                <a href="https://chatgpt.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=128" alt="ChatGPT"></div><div class="app-name">ChatGPT</div></a>
+                <a href="https://claude.ai" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=128" alt="Claude"></div><div class="app-name">Claude</div></a>
+                <a href="https://chat.deepseek.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=128" alt="Deepseek"></div><div class="app-name">Deepseek</div></a>
+                <a href="https://perplexity.ai" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128" alt="Perplexity"></div><div class="app-name">Perplexity</div></a>
+                <a href="https://gemini.google.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128" alt="Gemini"></div><div class="app-name">Gemini</div></a>
+                <a href="https://www.kimi.com/" class="app-item"><div class="app-icon"><img src="https://statics.moonshot.cn/kimi-web-seo/assets/kimi-logo-CegIMkbU.png" alt="Kimi"></div><div class="app-name">Kimi</div></a>
+                <a href="https://hackerai.co/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hackerai.co&sz=128" alt="HackerAI"></div><div class="app-name">HackerAI</div></a>
+                <a href="https://venice.ai/chat/agent" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=venice.ai&sz=128" alt="Venice AI"></div><div class="app-name">Venice AI</div></a>
+            </div>
+        </div>
+
+        <!-- Network -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined">hub</span> Network</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right">arrow_forward</span>
+            </div>
+            <div class="apps-row">
+                <a href="https://github.com/karthikparambil" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=128" alt="GitHub"></div><div class="app-name">GitHub</div></a>
+                <a href="https://web.whatsapp.com/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=128" alt="WhatsApp"></div><div class="app-name">WhatsApp</div></a>
+                <a href="https://discord.com/app" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=discord.com&sz=128" alt="Discord"></div><div class="app-name">Discord</div></a>
+                <a href="https://dgv4dgl0.onrender.com/" class="app-item"><div class="app-icon"><img src="https://cdn.jsdelivr.net/gh/karthikparambil/Neomorphic-Portfolio@de47cbe177d946f4a30c35bf930cd75b3096e755/assets/favicon.svg" alt="Textit"></div><div class="app-name">Textit</div></a>
+                <a href="https://www.linkedin.com/in/karthikparambil9/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn"></div><div class="app-name">LinkedIn</div></a>
+                <a href="https://Anonhere.vercel.app" class="app-item"><div class="app-icon"><img src="https://raw.githubusercontent.com/karthikparambil/AnonHere/refs/heads/main/static/favicon.ico" alt="Anonhere"></div><div class="app-name">Anonhere</div></a>
+                <a href="http://localhost:9999/" class="app-item"><div class="app-icon"><img src="http://localhost:9999/favicon.svg" alt="EdgeShare"></div><div class="app-name">EdgeShare</div></a>
+            </div>
+        </div>
+
+        <!-- Labs -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined">science</span> Labs</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right">arrow_forward</span>
+            </div>
+            <div class="apps-row">
+                <a href="https://tryhackme.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=tryhackme.com&sz=128" alt="TryHackMe"></div><div class="app-name">TryHackMe</div></a>
+                <a href="https://app.hackthebox.com/machines" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hackthebox.com&sz=128" alt="HTB"></div><div class="app-name">HackTheBox</div></a>
+                <a href="https://portswigger.net/web-security/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=portswigger.net&sz=128" alt="Portswigger"></div><div class="app-name">Portswigger</div></a>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined">build</span> Tools</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right">arrow_forward</span>
+            </div>
+            <div class="apps-row">
+                <a href="https://gchq.github.io/CyberChef/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=gchq.github.io/CyberChef&sz=128" alt="CyberChef"></div><div class="app-name">CyberChef</div></a>
+                <a href="https://crackstation.net" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=crackstation.net&sz=128" alt="Crackstation"></div><div class="app-name">CrackStn</div></a>
+                <a href="https://www.revshells.com/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=revshells.com&sz=128" alt="Revshells"></div><div class="app-name">Revshells</div></a>
+                <a href="https://speed.cloudflare.com/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=128" alt="Speedtest"></div><div class="app-name">Speedtest</div></a>
+                <a href="https://hashes.com/en/tools/hash_identifier" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hashes.com&sz=128" alt="Hashes.com"></div><div class="app-name">Hashes.com</div></a>
+                <a href="https://www.dcode.fr/hash-identifier" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=dcode.fr&sz=128" alt="dcode"></div><div class="app-name">dcode</div></a>
+                <a href="https://md5hashing.net/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=md5hashing.net&sz=128" alt="MD5Hash"></div><div class="app-name">MD5Hash</div></a>
+                <a href="https://karthikparambil.github.io/hashmode/" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hashcat.net&sz=128" alt="Hashmodes"></div><div class="app-name">Hashmodes</div></a>
+            </div>
+        </div>
+
+        <!-- Entertainment -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined">movie</span> Entertainment</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right">arrow_forward</span>
+            </div>
+            <div class="apps-row">
+                <a href="https://open.spotify.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=spotify.com&sz=128" alt="Spotify"></div><div class="app-name">Spotify</div></a>
+                <a href="https://www.netflix.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=netflix.com&sz=128" alt="Netflix"></div><div class="app-name">Netflix</div></a>
+                <a href="https://www.primevideo.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=primevideo.com&sz=128" alt="Prime"></div><div class="app-name">Prime</div></a>
+                <a href="https://www.reddit.com" class="app-item"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=128" alt="Reddit"></div><div class="app-name">Reddit</div></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-line">Same browser. A smarter start. </div>
+    </div>
+</div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            document.getElementById('time').innerHTML = hours + ':' + minutes + ' <span>' + ampm + '</span>';
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            document.getElementById('date').innerText = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+        }
+        
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Search Bar & Real Google Suggestions Logic
+        const searchInput = document.querySelector('.search-input');
+        const suggestionsBox = document.getElementById('suggestions');
+        let selectedIndex = -1;
+        let jsonpScript = null;
+        let debounceTimer = null;
+
+        // Auto-focus search bar immediately on load
+        if (searchInput) {
+            searchInput.focus();
+            window.addEventListener('DOMContentLoaded', () => searchInput.focus());
+            window.addEventListener('load', () => searchInput.focus());
+        }
+
+        // Global JSONP Callback for Google Suggestions API
+        window.handleGoogleSuggestions = function(data) {
+            if (!data || !data[1]) {
+                hideSuggestions();
+                return;
+            }
+            const suggestions = data[1].slice(0, 6); // Display top 6 suggestions
+            renderSuggestions(suggestions);
+        };
+
+        function renderSuggestions(suggestions) {
+            if (!suggestions || suggestions.length === 0) {
+                hideSuggestions();
+                return;
+            }
+
+            selectedIndex = -1;
+            suggestionsBox.innerHTML = suggestions.map((item, index) => `
+                <div class="suggestion-item" data-index="${index}">
+                    <span class="material-symbols-outlined suggestion-icon">search</span>
+                    <span class="suggestion-text">${escapeHtml(item)}</span>
+                </div>
+            `).join('');
+
+            suggestionsBox.classList.add('active');
+
+            // Click event for suggestion items
+            document.querySelectorAll('.suggestion-item').forEach(el => {
+                el.addEventListener('click', function() {
+                    const text = this.querySelector('.suggestion-text').innerText;
+                    executeSearch(text);
+                });
+            });
+        }
+
+        function hideSuggestions() {
+            if (suggestionsBox) {
+                suggestionsBox.classList.remove('active');
+                suggestionsBox.innerHTML = '';
+            }
+            selectedIndex = -1;
+        }
+
+        function executeSearch(query) {
+            if (query && query.trim() !== '') {
+                window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query.trim());
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        // Fetch live suggestions on input
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                clearTimeout(debounceTimer);
+
+                if (query === '') {
+                    hideSuggestions();
+                    return;
+                }
+
+                debounceTimer = setTimeout(() => {
+                    if (jsonpScript) jsonpScript.remove();
+                    jsonpScript = document.createElement('script');
+                    jsonpScript.src = `https://suggestqueries.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}&callback=handleGoogleSuggestions`;
+                    document.head.appendChild(jsonpScript);
+                }, 100);
+            });
+
+            // Keyboard navigation (Arrow Up / Down / Enter / Escape)
+            searchInput.addEventListener('keydown', function(e) {
+                const items = document.querySelectorAll('.suggestion-item');
+
+                if (e.key === 'ArrowDown') {
+                    if (items.length === 0) return;
+                    e.preventDefault();
+                    selectedIndex = (selectedIndex + 1) % items.length;
+                    updateHighlight(items);
+                } else if (e.key === 'ArrowUp') {
+                    if (items.length === 0) return;
+                    e.preventDefault();
+                    selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+                    updateHighlight(items);
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (selectedIndex >= 0 && items[selectedIndex]) {
+                        const text = items[selectedIndex].querySelector('.suggestion-text').innerText;
+                        executeSearch(text);
+                    } else {
+                        executeSearch(this.value);
+                    }
+                } else if (e.key === 'Escape') {
+                    hideSuggestions();
+                }
+            });
+        }
+
+        function updateHighlight(items) {
+            items.forEach((item, idx) => {
+                if (idx === selectedIndex) {
+                    item.classList.add('selected');
+                    searchInput.value = item.querySelector('.suggestion-text').innerText;
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+        }
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-box-wrapper')) {
+                hideSuggestions();
+            }
+        });
+
+        // Global key capture: Start typing immediately without tapping search bar
+        document.addEventListener('keydown', function(e) {
+            if (!searchInput) return;
+
+            // Handle Ctrl+K shortcut
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+                return;
+            }
+
+            // If user is already focused on search input, let default typing happen
+            if (document.activeElement === searchInput) return;
+
+            // Ignore modifier shortcuts and navigation keys
+            if (e.ctrlKey || e.altKey || e.metaKey || e.key === 'Escape' || e.key === 'Tab') return;
+
+            // Redirect printable characters directly into the search bar
+            if (e.key.length === 1 || e.key === 'Backspace') {
+                searchInput.focus();
+            }
+        });
+
+        // Ultra-Smooth Kinetic Horizontal Scrolling & Drag-to-Scroll Engine
+        document.querySelectorAll('.card').forEach(card => {
+            const row = card.querySelector('.apps-row');
+            const arrow = card.querySelector('.card-arrow');
+
+            if (!row) return;
+
+            let targetScrollLeft = row.scrollLeft;
+            let currentScrollLeft = row.scrollLeft;
+            let animFrameId = null;
+
+            function getMaxScroll() {
+                return row.scrollWidth - row.clientWidth;
+            }
+
+            function animateScroll() {
+                const maxScroll = getMaxScroll();
+                targetScrollLeft = Math.max(0, Math.min(maxScroll, targetScrollLeft));
+                const diff = targetScrollLeft - currentScrollLeft;
+
+                if (Math.abs(diff) > 0.3) {
+                    currentScrollLeft += diff * 0.12; // Silky smooth exponential damping
+                    row.scrollLeft = currentScrollLeft;
+                    animFrameId = requestAnimationFrame(animateScroll);
+                } else {
+                    currentScrollLeft = targetScrollLeft;
+                    row.scrollLeft = targetScrollLeft;
+                    animFrameId = null;
+                }
+            }
+
+            function triggerScrollTo(target) {
+                targetScrollLeft = target;
+                if (!animFrameId) {
+                    currentScrollLeft = row.scrollLeft;
+                    animFrameId = requestAnimationFrame(animateScroll);
+                }
+            }
+
+            // Card-wide Mouse Wheel Scroll (smooth horizontal slide on wheeling anywhere over card)
+            card.addEventListener('wheel', (e) => {
+                const maxScroll = getMaxScroll();
+                if (maxScroll <= 0) return;
+
+                const delta = e.deltaY || e.deltaX;
+                if (delta !== 0) {
+                    e.preventDefault();
+                    triggerScrollTo(targetScrollLeft + delta * 1.5);
+                }
+            }, { passive: false });
+
+            // Drag-to-Scroll with Inertia Flick & Click Prevention
+            let isMouseDown = false;
+            let startX = 0;
+            let scrollLeftStart = 0;
+            let lastX = 0;
+            let velocityX = 0;
+            let hasDragged = false;
+
+            row.addEventListener('mousedown', (e) => {
+                isMouseDown = true;
+                hasDragged = false;
+                row.classList.add('grabbing');
+                startX = e.pageX;
+                lastX = e.pageX;
+                scrollLeftStart = row.scrollLeft;
+                targetScrollLeft = row.scrollLeft;
+                currentScrollLeft = row.scrollLeft;
+                velocityX = 0;
+                if (animFrameId) {
+                    cancelAnimationFrame(animFrameId);
+                    animFrameId = null;
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (!isMouseDown) return;
+                isMouseDown = false;
+                row.classList.remove('grabbing');
+
+                // Apply flick inertia momentum on release
+                if (Math.abs(velocityX) > 2) {
+                    triggerScrollTo(targetScrollLeft - velocityX * 8);
+                }
+            });
+
+            row.addEventListener('mousemove', (e) => {
+                if (!isMouseDown) return;
+                e.preventDefault();
+                const x = e.pageX;
+                const moveDist = Math.abs(x - startX);
+                if (moveDist > 5) hasDragged = true;
+
+                velocityX = x - lastX;
+                lastX = x;
+
+                const walk = (x - startX) * 1.5;
+                row.scrollLeft = scrollLeftStart - walk;
+                targetScrollLeft = row.scrollLeft;
+                currentScrollLeft = row.scrollLeft;
+            });
+
+            // Prevent accidental link navigation when dragging
+            row.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (hasDragged) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                });
+            });
+
+            // Arrow Button Click: Scroll 1 view page or loop back
+            if (arrow) {
+                arrow.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const maxScroll = getMaxScroll();
+                    const pageSize = row.clientWidth * 0.85;
+
+                    if (row.scrollLeft >= maxScroll - 15) {
+                        triggerScrollTo(0);
+                    } else {
+                        triggerScrollTo(targetScrollLeft + pageSize);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
