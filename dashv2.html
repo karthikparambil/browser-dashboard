@@ -68,9 +68,9 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 24px 40px 18px;
+            padding: 20px 40px 16px;
             box-sizing: border-box;
-            zoom: 0.92;
+            zoom: 1;
         }
 
         /* Top Section */
@@ -108,7 +108,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transform: translateY(-10px);
+            margin-top: 30px;
         }
 
         .time {
@@ -182,19 +182,41 @@
             max-width: 230px;
         }
 
-        /* Search Section */
+        /* Search Section Animation & Layout */
+        @keyframes searchBarFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(14px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .search-container {
             display: flex;
             justify-content: center;
-            margin: 20px 0 24px;
+            margin: 16px 0 18px;
             padding: 0;
             width: 100%;
+            position: relative;
+            z-index: 9999;
+            animation: searchBarFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .search-box-wrapper {
             position: relative;
             width: 100%;
-            max-width: 640px;
+            max-width: 240px;
+            margin: 0 auto;
+            transition: max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+        }
+
+        .search-box-wrapper:focus-within,
+        .search-box-wrapper:hover,
+        .search-box-wrapper.expanded {
+            max-width: min(640px, 92vw);
         }
 
         .search-box {
@@ -207,19 +229,25 @@
             display: flex;
             align-items: center;
             padding: 12px 24px;
-            transition: all 0.3s;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .search-box:focus-within {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(30, 35, 45, 0.6);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(30, 35, 45, 0.65);
+            box-shadow: 0 10px 36px rgba(0,0,0,0.3);
         }
 
         .search-icon {
             color: var(--text-dim);
             margin-right: 12px;
             font-size: 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .search-box:focus-within .search-icon {
+            color: #ffffff;
+            transform: scale(1.1);
         }
 
         .search-input {
@@ -236,6 +264,7 @@
 
         .search-input::placeholder {
             color: var(--text-dim);
+            transition: color 0.3s;
         }
 
         .search-shortcut {
@@ -243,29 +272,36 @@
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 1px;
+            transition: opacity 0.3s;
         }
 
-        /* Suggestions Dropdown */
+        /* Suggestions Dropdown Smooth Entrance */
         .suggestions-dropdown {
             position: absolute;
             top: calc(100% + 8px);
             left: 0;
             right: 0;
-            background: rgba(20, 24, 33, 0.85);
+            background: rgba(20, 24, 33, 0.95);
             border: 1px solid var(--border-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-radius: 18px;
             overflow: hidden;
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.98);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+            display: flex;
             flex-direction: column;
-            z-index: 100;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            z-index: 99999;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
             padding: 6px 0;
         }
 
         .suggestions-dropdown.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
         }
 
         .suggestion-item {
@@ -298,12 +334,12 @@
 
         /* Cards Grid (3x2 Matrix) */
         .grid-container {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            gap: 18px;
             width: 100%;
         }
 
@@ -312,11 +348,11 @@
             border: 1px solid var(--border-glass);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 18px;
-            padding: 14px 16px 12px;
+            border-radius: 20px;
+            padding: 16px 18px 14px;
             display: flex;
             flex-direction: column;
-            height: 192px;
+            height: 210px;
             justify-content: space-between;
             overflow: hidden;
         }
@@ -325,26 +361,26 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .card-title {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             letter-spacing: 0.2px;
         }
 
         .card-title .material-symbols-outlined {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--text-dim);
         }
 
         .card-arrow {
             color: var(--text-dim);
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             transition: color 0.2s, transform 0.2s;
         }
@@ -404,16 +440,16 @@
         }
 
         .app-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 8px;
+            padding: 7px;
             transition: all 0.2s ease;
         }
 
@@ -500,6 +536,23 @@
             }
             .greeting {
                 text-align: center;
+            }
+            .search-container {
+                margin: 20px 0 20px;
+            }
+            .search-box-wrapper {
+                max-width: 180px;
+            }
+            .search-box-wrapper:focus-within,
+            .search-box-wrapper:hover,
+            .search-box-wrapper.expanded {
+                max-width: 94vw;
+            }
+            .search-box {
+                padding: 10px 16px;
+            }
+            .search-shortcut {
+                display: none;
             }
         }
     </style>
@@ -686,11 +739,16 @@
         let jsonpScript = null;
         let debounceTimer = null;
 
-        // Auto-focus search bar immediately on load
+        // Search bar starts collapsed (240px) and smoothly expands (640px) on hover/focus/typing
         if (searchInput) {
-            searchInput.focus();
-            window.addEventListener('DOMContentLoaded', () => searchInput.focus());
-            window.addEventListener('load', () => searchInput.focus());
+            searchInput.addEventListener('focus', () => {
+                searchInput.closest('.search-box-wrapper').classList.add('expanded');
+            });
+            searchInput.addEventListener('blur', () => {
+                if (searchInput.value.trim() === '') {
+                    searchInput.closest('.search-box-wrapper').classList.remove('expanded');
+                }
+            });
         }
 
         // Global JSONP Callback for Google Suggestions API
