@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     <style>
         :root {
             --bg-glass: rgba(22, 25, 33, 0.45);
@@ -21,8 +18,7 @@
             --hover-glass: rgba(255, 255, 255, 0.08);
         }
 
-        html,
-        body {
+        html, body {
             height: 100vh;
             width: 100vw;
             margin: 0;
@@ -37,8 +33,7 @@
             -ms-user-select: none;
         }
 
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar {
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
             display: none;
         }
 
@@ -102,14 +97,14 @@
             flex-direction: column;
             justify-content: center;
         }
-
+        
         .greeting h1 {
             font-size: clamp(22px, 2vw, 29px);
             font-weight: 600;
             margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
-
+        
         .greeting p {
             color: var(--text-dim);
             font-size: clamp(13px, 1vw, 15px);
@@ -183,7 +178,7 @@
             background: var(--hover-glass);
             color: var(--text-main);
         }
-
+        
         .top-icon .material-symbols-outlined {
             font-size: 19px;
         }
@@ -202,7 +197,6 @@
                 opacity: 0;
                 transform: translateY(14px) scale(0.96);
             }
-
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -250,7 +244,7 @@
         .search-box:focus-within {
             border-color: rgba(255, 255, 255, 0.25);
             background: rgba(30, 35, 45, 0.65);
-            box-shadow: 0 10px 36px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 36px rgba(0,0,0,0.3);
         }
 
         .search-icon {
@@ -330,8 +324,7 @@
             transition: background 0.15s, color 0.15s;
         }
 
-        .suggestion-item:hover,
-        .suggestion-item.selected {
+        .suggestion-item:hover, .suggestion-item.selected {
             background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
         }
@@ -376,15 +369,14 @@
             height: 216px;
         }
 
-        .card.card-1row,
-        .card.card-2row {
+        .card.card-1row, .card.card-2row {
             height: 216px;
         }
 
         .card.card-1x3 {
             height: 138px;
         }
-
+        
         .card.card-1x3 .apps-row {
             grid-template-rows: 1fr;
             grid-auto-columns: calc((100% - 16px) / 3);
@@ -418,7 +410,7 @@
             cursor: pointer;
             transition: color 0.2s, transform 0.2s;
         }
-
+        
         .card-arrow:hover {
             color: var(--text-main);
             transform: translateX(3px);
@@ -439,16 +431,13 @@
             padding: 2px;
             width: 100%;
             height: 100%;
-            scrollbar-width: none;
-            /* Firefox */
-            -ms-overflow-style: none;
-            /* IE */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE */
             cursor: grab;
             user-select: none;
         }
 
-        .apps-row.row-1,
-        .apps-row.row-2 {
+        .apps-row.row-1, .apps-row.row-2 {
             grid-template-rows: repeat(2, 1fr);
         }
 
@@ -457,8 +446,7 @@
         }
 
         .apps-row::-webkit-scrollbar {
-            display: none;
-            /* Chrome/Safari */
+            display: none; /* Chrome/Safari */
         }
 
         .app-item {
@@ -539,16 +527,15 @@
             color: var(--text-dim);
             font-size: 13.5px;
         }
-
+        
         .footer-line {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 16px;
         }
-
-        .footer-line::before,
-        .footer-line::after {
+        
+        .footer-line::before, .footer-line::after {
             content: "";
             height: 1px;
             width: 40px;
@@ -562,78 +549,64 @@
                 gap: 14px;
             }
         }
-
+        
         @media (max-width: 960px) {
             .dashboard-container {
                 padding: 16px 20px 12px;
             }
-
             .grid-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
-
             .top-section {
                 gap: 16px;
             }
         }
-
+        
         @media (max-width: 650px) {
             .dashboard-container {
                 padding: 12px 14px 10px;
                 min-height: auto;
             }
-
             .grid-container {
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
-
             .top-section {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
                 gap: 14px;
             }
-
             .greeting {
                 align-items: center;
                 text-align: center;
             }
-
             .clock-container {
                 margin-top: 0;
             }
-
             .quote-container {
                 align-items: center;
             }
-
             .quote {
                 text-align: center;
                 max-width: 100%;
             }
-
             .search-container {
                 margin: 14px 0 16px;
             }
-
             .search-box-wrapper {
                 max-width: 100%;
             }
-
             .search-box {
                 padding: 10px 18px;
             }
-
             .search-shortcut {
                 display: none;
             }
-
             .card {
                 padding: 10px 12px 8px;
             }
-
             .apps-row {
                 grid-auto-columns: calc((100% - 18px) / 4);
             }
@@ -667,7 +640,6 @@
             overflow-y: auto;
             align-content: flex-start;
         }
-
         .apps-row.layout-vertical {
             display: flex;
             flex-direction: column;
@@ -675,7 +647,6 @@
             align-items: flex-start;
             gap: 8px;
         }
-
         .apps-row.layout-vertical .app-item {
             flex-direction: row;
             justify-content: flex-start;
@@ -683,7 +654,6 @@
             padding: 4px 8px;
             width: 100%;
         }
-
         .apps-row.layout-vertical .app-name {
             width: auto;
             text-align: left;
@@ -693,9 +663,10 @@
             flex-direction: row;
             gap: 8px;
         }
+
+
     </style>
 </head>
-
 <body>
     <video class="bg-video" autoplay loop muted playsinline poster="assets/bg.png">
         <source src="assets/bg.mp4" type="video/mp4">
@@ -703,429 +674,179 @@
     <div class="bg-overlay"></div>
     <div class="dashboard-container">
         <div class="top-section">
-            <div class="greeting">
-                <h1 id="greeting-title">Good Morning, Karthik 👋</h1>
-                <p>Open. Do. Make it count.</p>
-            </div>
-
-            <div class="clock-container">
-                <div class="time" id="time">09:24 <span>AM</span></div>
-                <div class="date" id="date">Saturday, 13 September 2026</div>
-            </div>
-
-            <div class="quote-container">
-                <div class="top-icons">
-                    <div class="top-icon"><span class="material-symbols-outlined"></span></div>
-                    <div class="top-icon"><span class="material-symbols-outlined"></span></div>
-                    <div class="top-icon"><span class="material-symbols-outlined"></span></div>
-                </div>
-                <div class="quote">
-                    "Small steps every day<br>lead to big results."
-                </div>
-            </div>
+        <div class="greeting">
+            <h1 id="greeting-title">Good Morning, Karthik 👋</h1>
+            <p>Open. Do. Make it count.</p>
+        </div>
+        
+        <div class="clock-container">
+            <div class="time" id="time">09:24 <span>AM</span></div>
+            <div class="date" id="date">Saturday, 13 September 2026</div>
         </div>
 
-        <div class="search-container">
-            <div class="search-box-wrapper">
-                <div class="search-box">
-                    <span class="material-symbols-outlined search-icon">search</span>
-                    <input type="text" class="search-input" placeholder="Search Google or type a command..." autofocus
-                        autocomplete="off">
-                    <span class="search-shortcut">Ctrl K</span>
-                </div>
-                <div class="suggestions-dropdown" id="suggestions"></div>
+        <div class="quote-container">
+            <div class="top-icons">
+                <div class="top-icon"><span class="material-symbols-outlined">light_mode</span></div>
+                <div class="top-icon"><span class="material-symbols-outlined">palette</span></div>
+                <div class="top-icon"><span class="material-symbols-outlined">settings</span></div>
             </div>
-        </div>
-
-        <div class="grid-container">
-            <!-- Google & Apps -->
-            <div class="card" id="card-google">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Google Apps</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://google.com" rel="noopener noreferrer" class="app-item" title="Google">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=128"
-                                alt="Google"></div>
-                        <div class="app-name">Google</div>
-                    </a>
-                    <a href="https://mail.google.com" rel="noopener noreferrer" class="app-item" title="Gmail">
-                        <div class="app-icon"><img src="https://ssl.gstatic.com/ui/v1/icons/mail/logo_loading.png"
-                                alt="Gmail"></div>
-                        <div class="app-name">Gmail</div>
-                    </a>
-                    <a href="https://youtube.com" rel="noopener noreferrer" class="app-item" title="YouTube">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128"
-                                alt="YouTube"></div>
-                        <div class="app-name">YouTube</div>
-                    </a>
-                    <a href="https://music.youtube.com" rel="noopener noreferrer" class="app-item" title="YT Music">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=music.youtube.com&sz=128" alt="YT Music">
-                        </div>
-                        <div class="app-name">YT Music</div>
-                    </a>
-                    <a href="https://drive.google.com/drive/u/0/my-drive" rel="noopener noreferrer" class="app-item"
-                        title="Drive">
-                        <div class="app-icon"><img
-                                src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png"
-                                alt="Drive"></div>
-                        <div class="app-name">Drive</div>
-                    </a>
-                    <a href="https://docs.google.com" rel="noopener noreferrer" class="app-item" title="Docs">
-                        <div class="app-icon"><img
-                                src="https://www.gstatic.com/images/branding/productlogos/docs_2026/v2/web-48dp/logo_docs_2026_color_2x_web_48dp.png"
-                                alt="Docs"></div>
-                        <div class="app-name">Docs</div>
-                    </a>
-                    <a href="https://sheets.google.com" rel="noopener noreferrer" class="app-item" title="Sheets">
-                        <div class="app-icon"><img
-                                src="https://www.gstatic.com/images/branding/productlogos/sheets_2026q3/v1/web-48dp/logo_sheets_2026q3_color_2x_web_48dp.png"
-                                alt="Sheets"></div>
-                        <div class="app-name">Sheets</div>
-                    </a>
-                    <a href="https://calendar.google.com" rel="noopener noreferrer" class="app-item" title="Calendar">
-                        <div class="app-icon"><img
-                                src="https://calendar.google.com/googlecalendar/images/favicons_2026/calendar_16_32.ico"
-                                alt="Calendar"></div>
-                        <div class="app-name">Calendar</div>
-                    </a>
-                    <a href="https://meet.google.com" rel="noopener noreferrer" class="app-item" title="Meet">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=meet.google.com&sz=128" alt="Meet"></div>
-                        <div class="app-name">Meet</div>
-                    </a>
-                    <a href="https://slides.google.com" rel="noopener noreferrer" class="app-item" title="Slides">
-                        <div class="app-icon"><img
-                                src="https://www.gstatic.com/images/branding/productlogos/slides_2026/v2/web-48dp/logo_slides_2026_color_2x_web_48dp.png"
-                                alt="Slides"></div>
-                        <div class="app-name">Slides</div>
-                    </a>
-                    <a href="https://chat.google.com" rel="noopener noreferrer" class="app-item" title="Chat">
-                        <div class="app-icon"><img
-                                src="https://www.gstatic.com/dynamite/images/product/chat_2026_220dp.svg" alt="Chat">
-                        </div>
-                        <div class="app-name">Chat</div>
-                    </a>
-                    <a href="https://maps.google.com" rel="noopener noreferrer" class="app-item" title="Maps">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=maps.google.com&sz=128" alt="Maps"></div>
-                        <div class="app-name">Maps</div>
-                    </a>
-                    <a href="https://photos.google.com" rel="noopener noreferrer" class="app-item" title="Photos">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=photos.google.com&sz=128" alt="Photos">
-                        </div>
-                        <div class="app-name">Photos</div>
-                    </a>
-                    <a href="https://keep.google.com" rel="noopener noreferrer" class="app-item" title="Keep">
-                        <div class="app-icon"><img src="https://ssl.gstatic.com/keep/icon_2026_v2_192.png" alt="Keep">
-                        </div>
-                        <div class="app-name">Keep</div>
-                    </a>
-                    <a href="https://docs.google.com/forms" rel="noopener noreferrer" class="app-item" title="Forms">
-                        <div class="app-icon"><img
-                                src="https://ssl.gstatic.com/docs/spreadsheets/forms/forms_icon_2026_v2.ico"
-                                alt="Forms"></div>
-                        <div class="app-name">Forms</div>
-                    </a>
-                    <a href="https://tasks.google.com" rel="noopener noreferrer" class="app-item" title="Tasks">
-                        <div class="app-icon"><img
-                                src="https://www.gstatic.com//tasks/31bf352b350141ee0437b2e7770c70c9/favicon_v2.ico"
-                                alt="Tasks"></div>
-                        <div class="app-name">Tasks</div>
-                    </a>
-                    <a href="https://translate.google.com" rel="noopener noreferrer" class="app-item" title="Translate">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=translate.google.com&sz=128"
-                                alt="Translate"></div>
-                        <div class="app-name">Translate</div>
-                    </a>
-                    <a href="https://news.google.com" rel="noopener noreferrer" class="app-item" title="News">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=news.google.com&sz=128" alt="News"></div>
-                        <div class="app-name">News</div>
-                    </a>
-                </div>
+            <div class="quote">
+                "Small steps every day<br>lead to big results."
             </div>
-
-            <!-- AI -->
-            <div class="card" id="card-ai">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> AI</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://chatgpt.com" rel="noopener noreferrer" class="app-item" title="ChatGPT">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=128"
-                                alt="ChatGPT"></div>
-                        <div class="app-name">ChatGPT</div>
-                    </a>
-                    <a href="https://claude.ai" rel="noopener noreferrer" class="app-item" title="Claude">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=128"
-                                alt="Claude"></div>
-                        <div class="app-name">Claude</div>
-                    </a>
-                    <a href="https://chat.deepseek.com" rel="noopener noreferrer" class="app-item" title="Deepseek">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=128"
-                                alt="Deepseek"></div>
-                        <div class="app-name">Deepseek</div>
-                    </a>
-                    <a href="https://perplexity.ai" rel="noopener noreferrer" class="app-item" title="Perplexity">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128"
-                                alt="Perplexity"></div>
-                        <div class="app-name">Perplexity</div>
-                    </a>
-                    <a href="https://gemini.google.com" rel="noopener noreferrer" class="app-item" title="Gemini">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128" alt="Gemini">
-                        </div>
-                        <div class="app-name">Gemini</div>
-                    </a>
-                    <a href="https://www.kimi.com/" rel="noopener noreferrer" class="app-item" title="Kimi">
-                        <div class="app-icon"><img
-                                src="https://statics.moonshot.cn/kimi-web-seo/assets/kimi-logo-CegIMkbU.png" alt="Kimi">
-                        </div>
-                        <div class="app-name">Kimi</div>
-                    </a>
-                    <a href="https://hackerai.co/" rel="noopener noreferrer" class="app-item" title="HackerAI">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hackerai.co&sz=128"
-                                alt="HackerAI"></div>
-                        <div class="app-name">HackerAI</div>
-                    </a>
-                    <a href="https://venice.ai/chat/agent" rel="noopener noreferrer" class="app-item" title="Venice AI">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=venice.ai&sz=128"
-                                alt="Venice AI"></div>
-                        <div class="app-name">Venice AI</div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Network -->
-            <div class="card" id="card-network">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Network</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://github.com/karthikparambil" rel="noopener noreferrer" class="app-item"
-                        title="GitHub">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=128"
-                                alt="GitHub"></div>
-                        <div class="app-name">GitHub</div>
-                    </a>
-                    <a href="https://web.whatsapp.com/" rel="noopener noreferrer" class="app-item" title="WhatsApp">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=128"
-                                alt="WhatsApp"></div>
-                        <div class="app-name">WhatsApp</div>
-                    </a>
-                    <a href="https://discord.com/app" rel="noopener noreferrer" class="app-item" title="Discord">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=discord.com&sz=128"
-                                alt="Discord"></div>
-                        <div class="app-name">Discord</div>
-                    </a>
-                    <a href="https://dgv4dgl0.onrender.com/" rel="noopener noreferrer" class="app-item" title="Textit">
-                        <div class="app-icon"><img
-                                src="https://cdn.jsdelivr.net/gh/karthikparambil/Neomorphic-Portfolio@de47cbe177d946f4a30c35bf930cd75b3096e755/assets/favicon.svg"
-                                alt="Textit"></div>
-                        <div class="app-name">Textit</div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/karthikparambil9/" rel="noopener noreferrer" class="app-item"
-                        title="LinkedIn">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128"
-                                alt="LinkedIn"></div>
-                        <div class="app-name">LinkedIn</div>
-                    </a>
-                    <a href="https://Anonhere.vercel.app" rel="noopener noreferrer" class="app-item" title="Anonhere">
-                        <div class="app-icon"><img
-                                src="https://raw.githubusercontent.com/karthikparambil/AnonHere/refs/heads/main/static/favicon.ico"
-                                alt="Anonhere"></div>
-                        <div class="app-name">Anonhere</div>
-                    </a>
-                    <a href="http://localhost:9999/" rel="noopener noreferrer" class="app-item" title="EdgeShare">
-                        <div class="app-icon"><img src="http://localhost:9999/favicon.svg" alt="EdgeShare"></div>
-                        <div class="app-name">EdgeShare</div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Passive Scan -->
-            <div class="card" id="card-passive-scan">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Passive Scan</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://www.virustotal.com/" rel="noopener noreferrer" class="app-item" title="VirusTotal">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=virustotal.com&sz=128"
-                                alt="VirusTotal"></div>
-                        <div class="app-name">VirusTotal</div>
-                    </a>
-                    <a href="https://www.hybrid-analysis.com/" rel="noopener noreferrer" class="app-item"
-                        title="Hybrid Analysis">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=hybrid-analysis.com&sz=128"
-                                alt="Hybrid Analysis"></div>
-                        <div class="app-name">Hybrid Analysis</div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Pentest Utilities -->
-            <div class="card" id="card-pentest">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Pentest Utilities</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://gchq.github.io/CyberChef/" rel="noopener noreferrer" class="app-item"
-                        title="CyberChef">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=gchq.github.io/CyberChef&sz=128"
-                                alt="CyberChef"></div>
-                        <div class="app-name">CyberChef</div>
-                    </a>
-                    <a href="https://www.dorkgpt.com/" rel="noopener noreferrer" class="app-item" title="DorkGPT">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=dorkgpt.com&sz=128"
-                                alt="DorkGPT"></div>
-                        <div class="app-name">DorkGPT</div>
-                    </a>
-                    <a href="https://crackstation.net" rel="noopener noreferrer" class="app-item" title="Crackstation">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=crackstation.net&sz=128"
-                                alt="Crackstation"></div>
-                        <div class="app-name">CrackStn</div>
-                    </a>
-                    <a href="https://www.revshells.com/" rel="noopener noreferrer" class="app-item" title="Revshells">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=revshells.com&sz=128"
-                                alt="Revshells"></div>
-                        <div class="app-name">Revshells</div>
-                    </a>
-                    <a href="https://hashes.com/en/tools/hash_identifier" rel="noopener noreferrer" class="app-item"
-                        title="Hashes.com">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hashes.com&sz=128"
-                                alt="Hashes.com"></div>
-                        <div class="app-name">Hashes.com</div>
-                    </a>
-                    <a href="https://www.dcode.fr/hash-identifier" rel="noopener noreferrer" class="app-item"
-                        title="dcode">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=dcode.fr&sz=128"
-                                alt="dcode"></div>
-                        <div class="app-name">dcode</div>
-                    </a>
-                    <a href="https://md5hashing.net/" rel="noopener noreferrer" class="app-item" title="MD5Hash">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=md5hashing.net&sz=128"
-                                alt="MD5Hash"></div>
-                        <div class="app-name">MD5Hash</div>
-                    </a>
-                    <a href="https://karthikparambil.github.io/hashmode/" rel="noopener noreferrer" class="app-item"
-                        title="Hashmodes">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hashcat.net&sz=128"
-                                alt="Hashmodes"></div>
-                        <div class="app-name">Hashmodes</div>
-                    </a>
-                    <a href="https://start.me/p/0Pqbdg/osint-500-tools" rel="noopener noreferrer" class="app-item"
-                        title="OSINT 500 Tools">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=start.me&sz=128"
-                                alt="OSINT 500 Tools"></div>
-                        <div class="app-name">OSINT 500</div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Entertainment -->
-            <div class="card" id="card-entertainment">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Entertainment</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://open.spotify.com" rel="noopener noreferrer" class="app-item" title="Spotify">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=spotify.com&sz=128"
-                                alt="Spotify"></div>
-                        <div class="app-name">Spotify</div>
-                    </a>
-                    <a href="https://music.youtube.com" rel="noopener noreferrer" class="app-item" title="YT Music">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=music.youtube.com&sz=128" alt="YT Music">
-                        </div>
-                        <div class="app-name">YT Music</div>
-                    </a>
-                    <a href="https://www.netflix.com" rel="noopener noreferrer" class="app-item" title="Netflix">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=netflix.com&sz=128"
-                                alt="Netflix"></div>
-                        <div class="app-name">Netflix</div>
-                    </a>
-                    <a href="https://www.primevideo.com" rel="noopener noreferrer" class="app-item" title="Prime">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=primevideo.com&sz=128"
-                                alt="Prime"></div>
-                        <div class="app-name">Prime</div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Tools -->
-            <div class="card" id="card-tools">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Tools</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://vidpickr.com/" rel="noopener noreferrer" class="app-item" title="Vidpickr">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=vidpickr.com&sz=128"
-                                alt="Vidpickr"></div>
-                        <div class="app-name">Vidpickr</div>
-                    </a>
-                    <a href="https://speed.cloudflare.com/" rel="noopener noreferrer" class="app-item"
-                        title="Speedtest">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=128"
-                                alt="Speedtest"></div>
-                        <div class="app-name">Speedtest</div>
-                    </a>
-                    <a href="https://cleverhumanizer.ai/" rel="noopener noreferrer" class="app-item"
-                        title="CleverHumanizer">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=cleverhumanizer.ai&sz=128"
-                                alt="CleverHumanizer"></div>
-                        <div class="app-name">Humanizer</div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Labs -->
-            <div class="card card-1x3" id="card-labs" style="grid-column: 1; grid-row: 3;">
-                <div class="card-header">
-                    <div class="card-title"><span class="material-symbols-outlined"></span> Labs</div>
-                    <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
-                </div>
-                <div class="apps-row">
-                    <a href="https://tryhackme.com" rel="noopener noreferrer" class="app-item" title="TryHackMe">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=tryhackme.com&sz=128"
-                                alt="TryHackMe"></div>
-                        <div class="app-name">TryHackMe</div>
-                    </a>
-                    <a href="https://app.hackthebox.com/machines" rel="noopener noreferrer" class="app-item"
-                        title="HackTheBox">
-                        <div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hackthebox.com&sz=128"
-                                alt="HTB"></div>
-                        <div class="app-name">HackTheBox</div>
-                    </a>
-                    <a href="https://portswigger.net/web-security/" rel="noopener noreferrer" class="app-item"
-                        title="Portswigger">
-                        <div class="app-icon"><img
-                                src="https://www.google.com/s2/favicons?domain=portswigger.net&sz=128"
-                                alt="Portswigger"></div>
-                        <div class="app-name">Portswigger</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-line"></div>
         </div>
     </div>
+
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <div class="search-box">
+                <span class="material-symbols-outlined search-icon">search</span>
+                <input type="text" class="search-input" placeholder="Search Google or type a command..." autofocus autocomplete="off">
+                <span class="search-shortcut">Ctrl K</span>
+            </div>
+            <div class="suggestions-dropdown" id="suggestions"></div>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <!-- Google & Apps -->
+        <div class="card" id="card-google">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Google Apps</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://google.com" rel="noopener noreferrer" class="app-item" title="Google"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=128" alt="Google"></div><div class="app-name">Google</div></a>
+                <a href="https://mail.google.com" rel="noopener noreferrer" class="app-item" title="Gmail"><div class="app-icon"><img src="https://ssl.gstatic.com/ui/v1/icons/mail/logo_loading.png" alt="Gmail"></div><div class="app-name">Gmail</div></a>
+                <a href="https://youtube.com" rel="noopener noreferrer" class="app-item" title="YouTube"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="YouTube"></div><div class="app-name">YouTube</div></a>
+                <a href="https://music.youtube.com" rel="noopener noreferrer" class="app-item" title="YT Music"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=music.youtube.com&sz=128" alt="YT Music"></div><div class="app-name">YT Music</div></a>
+                <a href="https://drive.google.com/drive/u/0/my-drive" rel="noopener noreferrer" class="app-item" title="Drive"><div class="app-icon"><img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png" alt="Drive"></div><div class="app-name">Drive</div></a>
+                <a href="https://docs.google.com" rel="noopener noreferrer" class="app-item" title="Docs"><div class="app-icon"><img src="https://www.gstatic.com/images/branding/productlogos/docs_2026/v2/web-48dp/logo_docs_2026_color_2x_web_48dp.png" alt="Docs"></div><div class="app-name">Docs</div></a>
+                <a href="https://sheets.google.com" rel="noopener noreferrer" class="app-item" title="Sheets"><div class="app-icon"><img src="https://www.gstatic.com/images/branding/productlogos/sheets_2026q3/v1/web-48dp/logo_sheets_2026q3_color_2x_web_48dp.png" alt="Sheets"></div><div class="app-name">Sheets</div></a>
+                <a href="https://calendar.google.com" rel="noopener noreferrer" class="app-item" title="Calendar"><div class="app-icon"><img src="https://calendar.google.com/googlecalendar/images/favicons_2026/calendar_16_32.ico" alt="Calendar"></div><div class="app-name">Calendar</div></a>
+                <a href="https://meet.google.com" rel="noopener noreferrer" class="app-item" title="Meet"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=meet.google.com&sz=128" alt="Meet"></div><div class="app-name">Meet</div></a>
+                <a href="https://slides.google.com" rel="noopener noreferrer" class="app-item" title="Slides"><div class="app-icon"><img src="https://www.gstatic.com/images/branding/productlogos/slides_2026/v2/web-48dp/logo_slides_2026_color_2x_web_48dp.png" alt="Slides"></div><div class="app-name">Slides</div></a>
+                <a href="https://chat.google.com" rel="noopener noreferrer" class="app-item" title="Chat"><div class="app-icon"><img src="https://www.gstatic.com/dynamite/images/product/chat_2026_220dp.svg" alt="Chat"></div><div class="app-name">Chat</div></a>
+                <a href="https://maps.google.com" rel="noopener noreferrer" class="app-item" title="Maps"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=maps.google.com&sz=128" alt="Maps"></div><div class="app-name">Maps</div></a>
+                <a href="https://photos.google.com" rel="noopener noreferrer" class="app-item" title="Photos"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=photos.google.com&sz=128" alt="Photos"></div><div class="app-name">Photos</div></a>
+                <a href="https://keep.google.com" rel="noopener noreferrer" class="app-item" title="Keep"><div class="app-icon"><img src="https://ssl.gstatic.com/keep/icon_2026_v2_192.png" alt="Keep"></div><div class="app-name">Keep</div></a>
+                <a href="https://docs.google.com/forms" rel="noopener noreferrer" class="app-item" title="Forms"><div class="app-icon"><img src="https://ssl.gstatic.com/docs/spreadsheets/forms/forms_icon_2026_v2.ico" alt="Forms"></div><div class="app-name">Forms</div></a>
+                <a href="https://tasks.google.com" rel="noopener noreferrer" class="app-item" title="Tasks"><div class="app-icon"><img src="https://www.gstatic.com//tasks/31bf352b350141ee0437b2e7770c70c9/favicon_v2.ico" alt="Tasks"></div><div class="app-name">Tasks</div></a>
+                <a href="https://translate.google.com" rel="noopener noreferrer" class="app-item" title="Translate"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=translate.google.com&sz=128" alt="Translate"></div><div class="app-name">Translate</div></a>
+                <a href="https://news.google.com" rel="noopener noreferrer" class="app-item" title="News"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=news.google.com&sz=128" alt="News"></div><div class="app-name">News</div></a>
+            </div>
+        </div>
+
+        <!-- AI -->
+        <div class="card" id="card-ai">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> AI</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://chatgpt.com" rel="noopener noreferrer" class="app-item" title="ChatGPT"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=128" alt="ChatGPT"></div><div class="app-name">ChatGPT</div></a>
+                <a href="https://claude.ai" rel="noopener noreferrer" class="app-item" title="Claude"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=128" alt="Claude"></div><div class="app-name">Claude</div></a>
+                <a href="https://chat.deepseek.com" rel="noopener noreferrer" class="app-item" title="Deepseek"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=128" alt="Deepseek"></div><div class="app-name">Deepseek</div></a>
+                <a href="https://perplexity.ai" rel="noopener noreferrer" class="app-item" title="Perplexity"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128" alt="Perplexity"></div><div class="app-name">Perplexity</div></a>
+                <a href="https://gemini.google.com" rel="noopener noreferrer" class="app-item" title="Gemini"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128" alt="Gemini"></div><div class="app-name">Gemini</div></a>
+                <a href="https://www.kimi.com/" rel="noopener noreferrer" class="app-item" title="Kimi"><div class="app-icon"><img src="https://statics.moonshot.cn/kimi-web-seo/assets/kimi-logo-CegIMkbU.png" alt="Kimi"></div><div class="app-name">Kimi</div></a>
+                <a href="https://hackerai.co/" rel="noopener noreferrer" class="app-item" title="HackerAI"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hackerai.co&sz=128" alt="HackerAI"></div><div class="app-name">HackerAI</div></a>
+                <a href="https://venice.ai/chat/agent" rel="noopener noreferrer" class="app-item" title="Venice AI"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=venice.ai&sz=128" alt="Venice AI"></div><div class="app-name">Venice AI</div></a>
+            </div>
+        </div>
+
+        <!-- Network -->
+        <div class="card" id="card-network">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Network</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://github.com/karthikparambil" rel="noopener noreferrer" class="app-item" title="GitHub"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=128" alt="GitHub"></div><div class="app-name">GitHub</div></a>
+                <a href="https://web.whatsapp.com/" rel="noopener noreferrer" class="app-item" title="WhatsApp"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=128" alt="WhatsApp"></div><div class="app-name">WhatsApp</div></a>
+                <a href="https://discord.com/app" rel="noopener noreferrer" class="app-item" title="Discord"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=discord.com&sz=128" alt="Discord"></div><div class="app-name">Discord</div></a>
+                <a href="https://dgv4dgl0.onrender.com/" rel="noopener noreferrer" class="app-item" title="Textit"><div class="app-icon"><img src="https://cdn.jsdelivr.net/gh/karthikparambil/Neomorphic-Portfolio@de47cbe177d946f4a30c35bf930cd75b3096e755/assets/favicon.svg" alt="Textit"></div><div class="app-name">Textit</div></a>
+                <a href="https://www.linkedin.com/in/karthikparambil9/" rel="noopener noreferrer" class="app-item" title="LinkedIn"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn"></div><div class="app-name">LinkedIn</div></a>
+                <a href="https://Anonhere.vercel.app" rel="noopener noreferrer" class="app-item" title="Anonhere"><div class="app-icon"><img src="https://raw.githubusercontent.com/karthikparambil/AnonHere/refs/heads/main/static/favicon.ico" alt="Anonhere"></div><div class="app-name">Anonhere</div></a>
+                <a href="http://localhost:9999/" rel="noopener noreferrer" class="app-item" title="EdgeShare"><div class="app-icon"><img src="http://localhost:9999/favicon.svg" alt="EdgeShare"></div><div class="app-name">EdgeShare</div></a>
+            </div>
+        </div>
+
+        <!-- Passive Scan -->
+        <div class="card" id="card-passive-scan">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Passive Scan</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://www.virustotal.com/" rel="noopener noreferrer" class="app-item" title="VirusTotal"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=virustotal.com&sz=128" alt="VirusTotal"></div><div class="app-name">VirusTotal</div></a>
+                <a href="https://www.hybrid-analysis.com/" rel="noopener noreferrer" class="app-item" title="Hybrid Analysis"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hybrid-analysis.com&sz=128" alt="Hybrid Analysis"></div><div class="app-name">Hybrid Analysis</div></a>
+            </div>
+        </div>
+
+        <!-- Pentest Utilities -->
+        <div class="card" id="card-pentest">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Pentest Utilities</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://gchq.github.io/CyberChef/" rel="noopener noreferrer" class="app-item" title="CyberChef"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=gchq.github.io/CyberChef&sz=128" alt="CyberChef"></div><div class="app-name">CyberChef</div></a>
+                <a href="https://www.dorkgpt.com/" rel="noopener noreferrer" class="app-item" title="DorkGPT"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=dorkgpt.com&sz=128" alt="DorkGPT"></div><div class="app-name">DorkGPT</div></a>
+                <a href="https://crackstation.net" rel="noopener noreferrer" class="app-item" title="Crackstation"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=crackstation.net&sz=128" alt="Crackstation"></div><div class="app-name">CrackStn</div></a>
+                <a href="https://www.revshells.com/" rel="noopener noreferrer" class="app-item" title="Revshells"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=revshells.com&sz=128" alt="Revshells"></div><div class="app-name">Revshells</div></a>
+                <a href="https://hashes.com/en/tools/hash_identifier" rel="noopener noreferrer" class="app-item" title="Hashes.com"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hashes.com&sz=128" alt="Hashes.com"></div><div class="app-name">Hashes.com</div></a>
+                <a href="https://www.dcode.fr/hash-identifier" rel="noopener noreferrer" class="app-item" title="dcode"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=dcode.fr&sz=128" alt="dcode"></div><div class="app-name">dcode</div></a>
+                <a href="https://md5hashing.net/" rel="noopener noreferrer" class="app-item" title="MD5Hash"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=md5hashing.net&sz=128" alt="MD5Hash"></div><div class="app-name">MD5Hash</div></a>
+                <a href="https://karthikparambil.github.io/hashmode/" rel="noopener noreferrer" class="app-item" title="Hashmodes"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hashcat.net&sz=128" alt="Hashmodes"></div><div class="app-name">Hashmodes</div></a>
+                <a href="https://start.me/p/0Pqbdg/osint-500-tools" rel="noopener noreferrer" class="app-item" title="OSINT 500 Tools"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=start.me&sz=128" alt="OSINT 500 Tools"></div><div class="app-name">OSINT 500</div></a>
+            </div>
+        </div>
+
+        <!-- Entertainment -->
+        <div class="card" id="card-entertainment">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Entertainment</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://open.spotify.com" rel="noopener noreferrer" class="app-item" title="Spotify"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=spotify.com&sz=128" alt="Spotify"></div><div class="app-name">Spotify</div></a>
+                <a href="https://music.youtube.com" rel="noopener noreferrer" class="app-item" title="YT Music"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=music.youtube.com&sz=128" alt="YT Music"></div><div class="app-name">YT Music</div></a>
+                <a href="https://www.netflix.com" rel="noopener noreferrer" class="app-item" title="Netflix"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=netflix.com&sz=128" alt="Netflix"></div><div class="app-name">Netflix</div></a>
+                <a href="https://www.primevideo.com" rel="noopener noreferrer" class="app-item" title="Prime"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=primevideo.com&sz=128" alt="Prime"></div><div class="app-name">Prime</div></a>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="card" id="card-tools">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Tools</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://vidpickr.com/" rel="noopener noreferrer" class="app-item" title="Vidpickr"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=vidpickr.com&sz=128" alt="Vidpickr"></div><div class="app-name">Vidpickr</div></a>
+                <a href="https://speed.cloudflare.com/" rel="noopener noreferrer" class="app-item" title="Speedtest"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=128" alt="Speedtest"></div><div class="app-name">Speedtest</div></a>
+                <a href="https://cleverhumanizer.ai/" rel="noopener noreferrer" class="app-item" title="CleverHumanizer"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=cleverhumanizer.ai&sz=128" alt="CleverHumanizer"></div><div class="app-name">Humanizer</div></a>
+            </div>
+        </div>
+
+        <!-- Labs -->
+        <div class="card card-1x3" id="card-labs" style="grid-column: 1; grid-row: 3;">
+            <div class="card-header">
+                <div class="card-title"><span class="material-symbols-outlined"></span> Labs</div>
+                <span class="material-symbols-outlined card-arrow" title="Scroll right"></span>
+            </div>
+            <div class="apps-row">
+                <a href="https://tryhackme.com" rel="noopener noreferrer" class="app-item" title="TryHackMe"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=tryhackme.com&sz=128" alt="TryHackMe"></div><div class="app-name">TryHackMe</div></a>
+                <a href="https://app.hackthebox.com/machines" rel="noopener noreferrer" class="app-item" title="HackTheBox"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=hackthebox.com&sz=128" alt="HTB"></div><div class="app-name">HackTheBox</div></a>
+                <a href="https://portswigger.net/web-security/" rel="noopener noreferrer" class="app-item" title="Portswigger"><div class="app-icon"><img src="https://www.google.com/s2/favicons?domain=portswigger.net&sz=128" alt="Portswigger"></div><div class="app-name">Portswigger</div></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-line"></div>
+    </div>
+</div>
 
 
 
@@ -1137,14 +858,14 @@
             let minutes = now.getMinutes();
             const ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12;
-            hours = hours ? hours : 12;
+            hours = hours ? hours : 12; 
             minutes = minutes < 10 ? '0' + minutes : minutes;
-
+            
             document.getElementById('time').innerHTML = hours + ':' + minutes + ' <span>' + ampm + '</span>';
 
             const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
+            
             document.getElementById('date').innerText = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
 
             let greetingText = 'Good Morning, Karthik 👋';
@@ -1157,13 +878,13 @@
             } else {
                 greetingText = 'Good Night, Karthik 🌙';
             }
-
+            
             const greetingEl = document.getElementById('greeting-title');
             if (greetingEl && greetingEl.innerText !== greetingText) {
                 greetingEl.innerText = greetingText;
             }
         }
-
+        
         setInterval(updateClock, 1000);
         updateClock();
 
@@ -1192,12 +913,12 @@
             }
         });
 
-        window.handleGoogleSuggestions = function (data) {
+        window.handleGoogleSuggestions = function(data) {
             if (!data || !data[1]) {
                 hideSuggestions();
                 return;
             }
-            const suggestions = data[1].slice(0, 6);
+            const suggestions = data[1].slice(0, 6); 
             renderSuggestions(suggestions);
         };
 
@@ -1218,7 +939,7 @@
             suggestionsBox.classList.add('active');
 
             document.querySelectorAll('.suggestion-item').forEach(el => {
-                el.addEventListener('click', function () {
+                el.addEventListener('click', function() {
                     const text = this.querySelector('.suggestion-text').innerText;
                     executeSearch(text);
                 });
@@ -1244,7 +965,7 @@
         }
 
         if (searchInput) {
-            searchInput.addEventListener('input', function () {
+            searchInput.addEventListener('input', function() {
                 const query = this.value.trim();
                 clearTimeout(debounceTimer);
 
@@ -1261,7 +982,7 @@
                 }, 100);
             });
 
-            searchInput.addEventListener('keydown', function (e) {
+            searchInput.addEventListener('keydown', function(e) {
                 const items = document.querySelectorAll('.suggestion-item');
 
                 if (e.key === 'ArrowDown') {
@@ -1299,13 +1020,13 @@
             });
         }
 
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             if (!e.target.closest('.search-box-wrapper')) {
                 hideSuggestions();
             }
         });
 
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (!searchInput) return;
 
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -1355,7 +1076,7 @@
                 const diff = targetScrollLeft - currentScrollLeft;
 
                 if (Math.abs(diff) > 0.3) {
-                    currentScrollLeft += diff * 0.12;
+                    currentScrollLeft += diff * 0.12; 
                     row.scrollLeft = currentScrollLeft;
                     animFrameId = requestAnimationFrame(animateScroll);
                 } else {
@@ -1514,10 +1235,10 @@
             const w = window.innerWidth;
 
             if (w > 900) {
-                let targetZoom = h / 920;
-
+                let targetZoom = h / 920; 
+                
                 targetZoom = Math.max(0.60, Math.min(1.15, targetZoom));
-
+                
                 container.style.zoom = targetZoom;
             } else {
                 container.style.zoom = 1;
@@ -1529,5 +1250,4 @@
 
     </script>
 </body>
-
 </html>
